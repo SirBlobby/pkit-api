@@ -1,38 +1,22 @@
-# sv
+# Programmer Kit API (pkit-api)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Programming Software Manager REST API
 
-## Creating a project
+![Version](https://img.shields.io/badge/Version-0.0.1-blue)
+![Issues](https://img.shields.io/github/issues/GamerBoss101/Pkit)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## TechStack
+[![Svelte](https://skillicons.dev/icons?i=svelte)](https://svelte.dev/)
+[![Mongo](https://skillicons.dev/icons?i=mongo)](https://www.mongodb.com/)
 
-```bash
-# create a new project in the current directory
-npx sv create
 
-# create a new project in my-app
-npx sv create my-app
-```
+## API
+`/api/languages/` - Returns all available languages
 
-## Developing
+`/api/languages/:name` - Returns all available versions for a specific language
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+`/api/languages/:name/:version` - Returns all available platforms for a specific language and version
 
-```bash
-npm run dev
+`/api/languages/:name/:version/:platform` - Returns all available architectures for a specific language, version and platform
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+`/api/languages/:name/:version/:platform/:arch` - Returns all available sections for a specific language, version, platform and architecture
