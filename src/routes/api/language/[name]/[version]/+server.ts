@@ -15,6 +15,15 @@ export const GET: RequestHandler = async({ params, url }) => {
     if (platform) data = data.filter((x: any) => x.platform === platform);
     if (arch) data = data.filter((x: any) => x.arch === arch);
 
+    if(data.length == 1) {
+        data = data[0];
+        return new Response(JSON.stringify(data), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     return new Response(JSON.stringify(data), {
         headers: {
             'Content-Type': 'application/json'
