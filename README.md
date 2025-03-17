@@ -17,6 +17,4 @@ Programming Software Manager REST API
 
 `/api/languages/:name/:version` - Returns all available platforms for a specific language and version
 
-`/api/languages/:name/:version/:platform` - Returns all available architectures for a specific language, version and platform
-
-`/api/languages/:name/:version/:platform/:arch` - Returns all available sections for a specific language, version, platform and architecture
+`?platform=linux&arch=x64` - Returns the download link for a specific platform and architecture (Optional Filters)

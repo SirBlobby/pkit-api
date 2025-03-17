@@ -10,10 +10,7 @@
         <code>/api/languages/:name/:version</code> - Returns all available platforms for a specific language and version
     </p>
     <p class="text-lg">
-        <code>/api/languages/:name/:version/:platform</code> - Returns all available architectures for a specific language, version and platform
-    </p>
-    <p class="text-lg">
-        <code>/api/languages/:name/:version/:platform/:arch</code> - Returns all available sections for a specific language, version, platform and architecture
+        <code>?platform=linux&arch=x64</code> - Returns the download link for a specific platform and architecture (Optional Filters)
     </p>
 </div>
 
