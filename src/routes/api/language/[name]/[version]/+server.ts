@@ -12,8 +12,8 @@ export const GET: RequestHandler = async({ params, url }) => {
 
     let data = await db.languages.get({ name, version });
 
-    if (platform) data.filter((x: any) => x.platform === platform);
-    if (arch) data.filter((x: any) => x.arch === arch);
+    if (platform) data = data.filter((x: any) => x.platform === platform);
+    if (arch) data = data.filter((x: any) => x.arch === arch);
 
     return new Response(JSON.stringify(data), {
         headers: {
