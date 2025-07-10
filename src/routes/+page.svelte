@@ -1,23 +1,52 @@
+<script lang="ts">
+    import "$lib/css/markdown.css";
 
-<div class="container mx-auto p-4"> 
-    <img src="/favicon.png" alt="logo" class="w-32 h-32 mx-auto" />
-    <h1 class="text-2xl font-bold">API DOCS</h1>
-    <p class="text-lg">This is the API documentation page</p>
+    import { onMount } from "svelte";
+    import Markdown from "svelte-exmarkdown";
+    import ImageSlider from "$lib/components/ImageSlider.svelte";
 
-    <p class="text-lg"><code>/api/languages/</code> - Returns all available languages</p>
-    <p class="text-lg"><code>/api/languages/:name</code> - Returns all available versions for a specific language</p>
-    <p class="text-lg">
-        <code>/api/languages/:name/:version</code> - Returns all available platforms for a specific language and version
-    </p>
-    <p class="text-lg">
-        <code>?platform=linux&arch=x64</code> - Returns the download link for a specific platform and architecture (Optional Filters)
-    </p>
+	let md = $state<string>("");
+
+    // fetch text from repository url reamde file
+    // https://raw.githubusercontent.com/yourusername/yourrepo/main/README.md
+
+    onMount(async () => {
+        md = await fetch(
+        "https://raw.githubusercontent.com/dead-projects-inc/pkit-cli/refs/heads/master/README.md"
+        )
+        .then((response) => response.text())
+        .catch((error) => {
+            console.error("Error fetching README.md:", error);
+            return "# Error fetching README.md";
+        });
+    });
+</script>
+
+<div class="card bg-surface-700 h-full w-full p-6 markdown">
+    <Markdown {md} />
+
+    <ImageSlider
+        images={[
+            {
+                src: "/image1.png",
+                alt: "CLI Image 1"
+            },
+            {
+                src: "/image2.png",
+                alt: "CLI Image 2"
+            },
+            {
+                src: "/image3.png",
+                alt: "CLI Image 3"
+            },
+            {
+                src: "/image4.png",
+                alt: "CLI Image 4"
+            }
+        ]}
+        autoPlay={true}
+        autoPlayInterval={2000}
+        className="mt-8"
+    />  
 </div>
 
-<style>
-    code {
-        background-color: #f3f4f6;
-        border-radius: 1px;
-        padding: 1px;
-    }
-</style>
