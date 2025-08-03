@@ -15,8 +15,8 @@ export const GET: RequestHandler = async({ params, url }) => {
     if (platform) data = data.filter((x: any) => x.platform === platform);
     if (arch) data = data.filter((x: any) => x.arch === arch);
 
-    data = data.map((x: any) => {
-        const { _id, ...rest } = x;
+    data = data.map((doc: any) => {
+        const { _id, ...rest } = doc.toObject?.() ?? doc;
         return rest;
     });
 

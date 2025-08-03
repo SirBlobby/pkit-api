@@ -18,7 +18,7 @@
     export let className: string = "";
     
     let currentIndex: number = 0;
-    let autoPlayTimer: NodeJS.Timeout | null = null;
+    let autoPlayTimer: number | null = null;
     let isLoading: boolean = false;
     let imageContainer: HTMLDivElement;
     

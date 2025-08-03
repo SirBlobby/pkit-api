@@ -29,8 +29,8 @@ export const GET: RequestHandler = async({ params, url }) => {
         return 0;
     });
 
-    data = data.map((x: any) => {
-        const { _id, ...rest } = x;
+    data = data.map((doc: any) => {
+        const { _id, ...rest } = doc.toObject?.() ?? doc;
         return rest;
     });
 
