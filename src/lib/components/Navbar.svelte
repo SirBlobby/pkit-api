@@ -25,6 +25,7 @@
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-4 justify-center font-semibold">
                 <a href="/api" class="btn variant-ghost">API</a>
+                <a href="/library" class="btn variant-ghost">Library</a>
             </div>
 
             <div class="hidden md:flex justify-self-end gap-2">
