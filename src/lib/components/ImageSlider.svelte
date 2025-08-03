@@ -171,12 +171,12 @@
                     
                     <!-- Image overlay with title and description -->
                     {#if (image.title || image.description) && index === currentIndex}
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 sm:p-4 lg:p-6">
                             {#if image.title}
-                                <h3 class="text-white text-xl font-semibold mb-2">{image.title}</h3>
+                                <h3 class="text-white text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{image.title}</h3>
                             {/if}
                             {#if image.description}
-                                <p class="text-white/90 text-sm leading-relaxed">{image.description}</p>
+                                <p class="text-white/90 text-xs sm:text-sm leading-relaxed">{image.description}</p>
                             {/if}
                         </div>
                     {/if}
@@ -194,21 +194,21 @@
         <!-- Navigation arrows -->
         {#if showNavigation && images.length > 1}
             <button
-                class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100"
+                class="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100"
                 on:click={prevSlide}
                 aria-label="Previous image"
                 tabindex="0"
             >
-                <Icon icon="eva:arrow-left-outline" class="w-6 h-6" />
+                <Icon icon="eva:arrow-left-outline" class="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
             
             <button
-                class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100"
+                class="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100"
                 on:click={nextSlide}
                 aria-label="Next image"
                 tabindex="0"
             >
-                <Icon icon="eva:arrow-right-outline" class="w-6 h-6" />
+                <Icon icon="eva:arrow-right-outline" class="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
         {/if}
         
@@ -232,18 +232,18 @@
         {/if}
         
         <!-- Image counter -->
-        <div class="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium">
+        <div class="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
             {currentIndex + 1} / {images.length}
         </div>
     {/if}
     
     <!-- Thumbnails -->
     {#if showThumbnails && images.length > 1}
-        <div class="absolute bottom-0 left-0 right-0 bg-black/70 p-4">
-            <div class="flex gap-2 overflow-x-auto">
+        <div class="absolute bottom-0 left-0 right-0 bg-black/70 p-2 sm:p-4">
+            <div class="flex gap-1 sm:gap-2 overflow-x-auto">
                 {#each images as image, index}
                     <button
-                        class="flex-shrink-0 w-16 h-12 rounded border-2 overflow-hidden transition-all duration-200 border-white"
+                        class="flex-shrink-0 w-12 h-9 sm:w-16 sm:h-12 rounded border-2 overflow-hidden transition-all duration-200 border-white"
                         class:opacity-100={index === currentIndex}
                         class:opacity-60={index !== currentIndex}
                         class:border-opacity-100={index === currentIndex}

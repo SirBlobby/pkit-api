@@ -146,18 +146,18 @@
 
 </script>
 
-<div class="container mx-auto p-4"> 
-    <div class="text-center mb-8">
-        <img src="/favicon.png" alt="logo" class="w-32 h-32 mx-auto mb-4" />
-        <h1 class="text-4xl font-bold text-surface-900 dark:text-surface-100 mb-2">API Documentation</h1>
-        <p class="text-xl text-surface-700 dark:text-surface-300 mb-2">Programmer Kit API</p>
-        <p class="text-base text-surface-600 dark:text-surface-400 max-w-2xl mx-auto">
+<div class="container mx-auto p-2 sm:p-4"> 
+    <div class="text-center mb-6 sm:mb-8">
+        <img src="/favicon.png" alt="logo" class="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4" />
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-surface-900 dark:text-surface-100 mb-2">API Documentation</h1>
+        <p class="text-lg sm:text-xl text-surface-700 dark:text-surface-300 mb-2">Programmer Kit API</p>
+        <p class="text-sm sm:text-base text-surface-600 dark:text-surface-400 max-w-2xl mx-auto px-4">
             Use this API to get information about programming languages, their versions, platforms, and download links. 
             All endpoints return JSON responses and support both light and dark themes.
         </p>
     </div>
 
-    <div class="space-y-6">
+    <div class="space-y-4 sm:space-y-6">
         {#each endpoints as endpoint}
             <GETRoute 
                 endpoint={endpoint.endpoint}

@@ -68,10 +68,10 @@
     }
 </script>
 
-<div class="card w-full preset-filled-surface-100-900 p-4 text-center">
+<div class="card w-full preset-filled-surface-100-900 p-2 sm:p-4 text-center">
     <div>
-        <h2 class="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
-            <code class="font-mono bg-surface-200 dark:bg-surface-700 px-2 py-1 rounded">
+        <h2 class="text-lg sm:text-2xl font-bold mb-2 flex flex-col sm:flex-row items-center justify-center gap-2">
+            <code class="font-mono bg-surface-200 dark:bg-surface-700 px-2 py-1 rounded text-sm sm:text-base">
                 pkit list {langName}
             </code>
             <button 
@@ -80,32 +80,32 @@
                 title="Copy command"
             >
                 {#if copiedStates['header']}
-                    <Icon icon="eva:checkmark-circle-2-fill" class="w-5 h-5 text-green-600" />
+                    <Icon icon="eva:checkmark-circle-2-fill" class="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
                 {:else}
-                    <Icon icon="eva:copy-outline" class="w-5 h-5 text-surface-600 dark:text-surface-400" />
+                    <Icon icon="eva:copy-outline" class="w-4 h-4 sm:w-5 sm:h-5 text-surface-600 dark:text-surface-400" />
                 {/if}
             </button>
         </h2>
     </div>
-    <div class="text-left">
-        <table class="table caption-bottom">
+    <div class="text-left overflow-x-auto">
+        <table class="table caption-bottom min-w-full">
             <thead>
                 <tr> 
-                    <th class="!text-center">Version</th>
-                    <th class="!text-center">Platforms</th>
-                    <th class="!text-center">Architectures</th>
-                    <th class="!text-right">Install Command</th>
+                    <th class="!text-center text-xs sm:text-sm">Version</th>
+                    <th class="!text-center text-xs sm:text-sm hidden sm:table-cell">Platforms</th>
+                    <th class="!text-center text-xs sm:text-sm hidden sm:table-cell">Architectures</th>
+                    <th class="!text-center text-xs sm:text-sm sm:!text-right">Install Command</th>
                 </tr>
             </thead>
             <tbody class="[&>tr]:hover:preset-tonal-primary">
-            {#if paginatedVersions.length > 0}
+                        {#if paginatedVersions.length > 0}
                 {#each paginatedVersions as version}
                 <tr>
-                    <td class="font-mono text-lg">{version.version}</td>
-                    <td>
-                        <div class="flex flex-wrap justify-center items-center">
+                    <td class="font-mono text-sm sm:text-lg">{version.version}</td>
+                    <td class="hidden sm:table-cell">
+                        <div class="flex flex-wrap justify-center items-center gap-1">
                             {#each version.platforms as platform}
-                                <span class="badge font-semibold mx-2" 
+                                <span class="badge font-semibold text-xs" 
                                       class:bg-blue-600={platform === 'linux'}
                                       class:bg-purple-600={platform === 'win'}
                                       class:bg-green-600={platform === 'darwin'}
@@ -116,10 +116,10 @@
                             {/each}
                         </div>
                     </td>
-                    <td>
-                        <div class="flex flex-wrap justify-center items-center">
+                    <td class="hidden sm:table-cell">
+                        <div class="flex flex-wrap justify-center items-center gap-1">
                             {#each version.architectures as arch}
-                                <span class="badge font-semibold mx-2"
+                                <span class="badge font-semibold text-xs"
                                       class:bg-gray-500={arch === 'x64'}
                                       class:bg-indigo-500={arch === 'arm64'}
                                       class:bg-pink-500={arch === 'x86'}
@@ -131,38 +131,69 @@
                             {/each}
                         </div>
                     </td>
-                    <td class="text-right">
-                        <div class="flex items-center justify-end gap-2">
-                            <code class="font-mono bg-surface-200 dark:bg-surface-700 px-2 py-1 rounded text-sm">
-                                pkit install {langauge} {version.version}
-                            </code>
-                            <button 
-                                on:click={() => copyToClipboard(`pkit install ${langauge} ${version.version}`, `install-${version.version}`)}
-                                class="p-1 hover:bg-surface-200 dark:hover:bg-surface-600 rounded-md transition-colors"
-                                title="Copy install command"
-                            >
-                                {#if copiedStates[`install-${version.version}`]}
-                                    <Icon icon="eva:checkmark-circle-2-fill" class="w-4 h-4 text-green-600" />
-                                {:else}
-                                    <Icon icon="eva:copy-outline" class="w-4 h-4 text-surface-600 dark:text-surface-400" />
-                                {/if}
-                            </button>
+                    <td class="text-center sm:text-right">
+                        <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-end gap-2">
+                            <!-- Mobile: Show platforms and architectures -->
+                            <div class="sm:hidden flex flex-col gap-1 w-full">
+                                <div class="flex flex-wrap justify-center gap-1">
+                                    {#each version.platforms as platform}
+                                        <span class="badge font-semibold text-xs" 
+                                              class:bg-blue-600={platform === 'linux'}
+                                              class:bg-purple-600={platform === 'win'}
+                                              class:bg-green-600={platform === 'darwin'}
+                                              class:bg-orange-500={!['linux', 'windows', 'darwin', 'macos'].includes(platform)}
+                                              class:text-white={true}>
+                                            {platform}
+                                        </span>
+                                    {/each}
+                                </div>
+                                <div class="flex flex-wrap justify-center gap-1">
+                                    {#each version.architectures as arch}
+                                        <span class="badge font-semibold text-xs"
+                                              class:bg-gray-500={arch === 'x64'}
+                                              class:bg-indigo-500={arch === 'arm64'}
+                                              class:bg-pink-500={arch === 'x86'}
+                                              class:bg-teal-500={arch === 'aarch64'}
+                                              class:bg-red-500={!['x64', 'arm64', 'x86', 'aarch64'].includes(arch)}
+                                              class:text-white={true}>
+                                            {arch}
+                                        </span>
+                                    {/each}
+                                </div>
+                            </div>
+                            <!-- Install command -->
+                            <div class="flex items-center gap-2 w-full sm:w-auto">
+                                <code class="font-mono bg-surface-200 dark:bg-surface-700 px-2 py-1 rounded text-xs sm:text-sm flex-1 sm:flex-none">
+                                    pkit install {langauge} {version.version}
+                                </code>
+                                <button 
+                                    on:click={() => copyToClipboard(`pkit install ${langauge} ${version.version}`, `install-${version.version}`)}
+                                    class="p-1 hover:bg-surface-200 dark:hover:bg-surface-600 rounded-md transition-colors flex-shrink-0"
+                                    title="Copy install command"
+                                >
+                                    {#if copiedStates[`install-${version.version}`]}
+                                        <Icon icon="eva:checkmark-circle-2-fill" class="w-4 h-4 text-green-600" />
+                                    {:else}
+                                        <Icon icon="eva:copy-outline" class="w-4 h-4 text-surface-600 dark:text-surface-400" />
+                                    {/if}
+                                </button>
+                            </div>
                         </div>
                     </td>
                 </tr>
                 {/each}
             {:else}
                 <tr>
-                    <td colspan="4" class="text-center">Loading...</td>
+                    <td colspan="4" class="text-center text-sm">Loading...</td>
                 </tr>
             {/if}
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="3">
-                        Showing {(currentPage - 1) * pageSize + 1}-{Math.min(currentPage * pageSize, versionSummary.length)} of {versionSummary.length} versions
+                <tr class="text-xs sm:text-sm">
+                    <td colspan="3" class="text-center sm:text-left">
+                        Showing {(currentPage - 1) * pageSize + 1}-{Math.min(currentPage * pageSize, versionSummary.length)} of {versionSummary.length}
                     </td>
-                    <td class="text-right">Page {currentPage} of {Math.ceil(versionSummary.length / pageSize)}</td>
+                    <td class="text-center sm:text-right">Page {currentPage} of {Math.ceil(versionSummary.length / pageSize)}</td>
                 </tr>
             </tfoot>
         </table>
@@ -173,6 +204,7 @@
                 onPageChange={(e) => (currentPage = e.page)}
                 pageSize={pageSize}
                 siblingCount={1}
+                classes="text-sm"
             />
         </div>
     </div>  

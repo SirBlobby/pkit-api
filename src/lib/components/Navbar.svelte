@@ -43,17 +43,22 @@
 
         <!-- Mobile Menu -->
         {#if isOpen}
-            <div class="md:hidden p-4 space-y-2 font-semibold">
-                <a href="/api" class="btn variant-ghost">API</a>
-                <a href="https://trello.com/b/wjJqU9ws" class="btn preset-filled">
-                    <Icon icon="mdi:trello" class="w-6 h-6" />
-                </a>  
-                <a href="https://github.com/dead-projects-inc/pkit-cli" class="btn preset-filled">
-                    <Icon icon="mdi:github" class="w-6 h-6" />
-                </a>
-                <a href="https://discord.gg/MHYCWXc83m" class="btn preset-filled">
-                    <Icon icon="mdi:discord" class="w-6 h-6" />
-                </a>   
+            <div class="md:hidden p-4 space-y-3 font-semibold border-t border-surface-600">
+                <div class="flex flex-col space-y-3">
+                    <a href="/api" class="btn variant-ghost text-left w-full justify-start">API</a>
+                    <a href="/library" class="btn variant-ghost text-left w-full justify-start">Library</a>
+                </div>
+                <div class="flex justify-center gap-4 pt-3 border-t border-surface-600">
+                    <a href="https://trello.com/b/wjJqU9ws" class="btn preset-filled" title="Trello">
+                        <Icon icon="mdi:trello" class="w-6 h-6" />
+                    </a>  
+                    <a href="https://github.com/dead-projects-inc/pkit-cli" class="btn preset-filled" title="GitHub">
+                        <Icon icon="mdi:github" class="w-6 h-6" />
+                    </a>
+                    <a href="https://discord.gg/MHYCWXc83m" class="btn preset-filled" title="Discord">
+                        <Icon icon="mdi:discord" class="w-6 h-6" />
+                    </a>   
+                </div>
             </div>
         {/if}
     </div>

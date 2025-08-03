@@ -22,7 +22,7 @@
     });
 </script>
 
-<div class="card bg-surface-700 h-full w-full p-6 markdown">
+<div class="card bg-surface-700 h-full w-full p-3 sm:p-4 lg:p-6 markdown">
     <Markdown {md} />
 
     <ImageSlider
@@ -46,7 +46,7 @@
         ]}
         autoPlay={true}
         autoPlayInterval={2000}
-        className="mt-8"
+        className="mt-4 sm:mt-6 lg:mt-8"
     />  
 </div>
 
